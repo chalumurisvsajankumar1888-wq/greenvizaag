@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#126b45">
+  <title>Green Vizag | Smart Environmental Platform</title>
+  <link rel="icon" type="image/png" href="WhatsApp Image 2026-11-05 at 8.47.01 PM.png">
+</head>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Green Vizag home">
+      <span class="brand-mark">🌱</span>
+      <span><strong>Green Vizag</strong><small>Climate Action & Sustainability</small></span>
+    </a>
+    <nav>
+      <button class="nav-link active" data-view="home">Home</button>
+      <button class="nav-link" data-view="report">Report Waste</button>
+      <button class="nav-link" data-view="scanner">Waste Scanner</button>
+      <button class="nav-link" data-view="tracker">Carbon Footprint</button>
+      <button class="nav-link" data-view="treemap">Tree Cover Map</button>
+      <button class="nav-link" data-view="track">Track Complaint</button>
+      <button class="nav-link" data-view="about">About</button>
+    </nav>
+    <div class="account-actions" id="accountActions">
+      <button class="btn btn-light" id="loginOpen">Login</button>
+      <button class="btn btn-primary" id="registerOpen">Join us</button>
+    </div>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+  </header>
+
+  <main>
+    <!-- HOME VIEW -->
+    <section class="view active" id="homeView">
+      <section class="hero">
+        <div class="hero-copy">
+          <span class="eyebrow">A Citizen-Powered Sustainability Platform</span>
+          <h1>Empowering <em>Vizag</em><br>for a Greener Tomorrow.</h1>
+          <p>Scan waste, report dumping, calculate carbon savings, and map urban tree cover to combat urban heat islands.</p>
+          <div class="hero-actions">
+            <button class="btn btn-primary btn-large" data-go="scanner">Scan Waste Now <span>🔍</span></button>
+            <button class="btn btn-outline btn-large" data-go="treemap">Explore Tree Map <span>🌳</span></button>
+          </div>
+          <div class="trust-note"><span class="live-dot"></span> Active Track 03 Climate Action Project</div>
+        </div>
+        <div class="hero-art" aria-label="Illustration of a clean green city">
+          <div class="sun"></div><div class="hill hill-back"></div><div class="hill hill-front"></div>
+          <div class="city-building b1"></div><div class="city-building b2"></div><div class="city-building b3"></div>
+          <div class="tree tree-one">🌳</div><div class="tree tree-two">🌲</div>
+          <div class="clean-bin">♻️</div>
+          <div class="art-label"><b>GREEN VIZAG</b><small>Segregation • Carbon • Canopies</small></div>
+        </div>
+      </section>
+
+      <section class="stats-grid" aria-label="Complaint statistics">
+        <article class="stat-card"><span class="stat-icon">📋</span><div><strong id="statTotal">0</strong><small>Total Reports</small></div></article>
+        <article class="stat-card"><span class="stat-icon">🔍</span><div><strong id="statScanned">0</strong><small>Items Segregated</small></div></article>
+        <article class="stat-card"><span class="stat-icon">🌱</span><div><strong id="statCarbon">0 kg</strong><small>CO₂ Saved</small></div></article>
+        <article class="stat-card"><span class="stat-icon">🌳</span><div><strong id="statTrees">1,240</strong><small>Trees Mapped</small></div></article>
+      </section>
+
+      <section class="section-block">
+        <div class="section-heading"><div><span class="eyebrow">Platform Features</span><h2>Sustainability in Three Pillars</h2></div><p>Innovative tools to drive localized climate resilience.</p></div>
+        <div class="steps-grid">
+          <article class="step-card"><span class="step-number">01</span><div class="step-icon">🤖</div><h3>Smart Waste Scanner</h3><p>Upload a photo or use AI simulation to segregate organic, recyclable, and hazardous waste.</p></article>
+          <article class="step-card"><span class="step-number">02</span><div class="step-icon">📊</div><h3>Carbon Footprint Tracker</h3><p>Log eco-friendly habits and monitor your personal and community CO₂ reduction impact.</p></article>
+          <article class="step-card"><span class="step-number">03</span><div class="step-icon">🗺️</div><h3>Tree Cover & Heat Map</h3><p>Locate urban heat islands and log community tree-planting initiatives across Visakhapatnam.</p></article>
+        </div>
+      </section>
+    </section>
+
+    <!-- WASTE SCANNER VIEW -->
+    <section class="view page-view" id="scannerView">
+      <div class="page-heading"><span class="eyebrow">AI Feature</span><h1>Waste Segregation Scanner</h1><p>Identify whether waste is Organic, Recyclable, or Hazardous and get handling instructions.</p></div>
+      <div class="form-layout">
+        <div class="panel report-form">
+          <h2>Upload or Simulate Waste Image</h2>
+          <label class="upload-box" for="scanPhoto">
+            <span class="upload-icon">📷</span>
+            <strong>Select or Take a Photo of Waste</strong>
+            <small>JPG, PNG or WEBP</small>
+            <input type="file" id="scanPhoto" accept="image/*">
+          </label>
+          <div id="scanPreviewBox" class="photo-preview hidden">
+            <img id="scanPreviewImg" alt="Waste preview">
+            <button type="button" id="scanBtn" class="btn btn-primary">Analyze Waste Category 🪄</button>
+          </div>
+          <div class="preset-sim">
+            <p><strong>Or Test Sample Categories:</strong></p>
+            <div class="hero-actions">
+              <button class="btn btn-light" onclick="simulateScan('wet')">Banana Peel / Food Waste</button>
+              <button class="btn btn-light" onclick="simulateScan('dry')">Plastic Bottle / Paper</button>
+              <button class="btn btn-light" onclick="simulateScan('e-waste')">Battery / E-Waste</button>
+            </div>
+          </div>
+          <div id="scanResults" class="track-result hidden"></div>
+        </div>
+        <aside class="side-note">
+          <div class="side-icon">♻️</div>
+          <h3>Why Segregate?</h3>
+          <ul>
+            <li>Prevents recyclable material from clogging landfills.</li>
+            <li>Reduces methane emission from unmanaged wet waste.</li>
+            <li>Keeps toxic e-waste out of local water bodies.</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <!-- CARBON TRACKER VIEW -->
+    <section class="view page-view" id="trackerView">
+      <div class="page-heading"><span class="eyebrow">Personal Impact</span><h1>Carbon Footprint Tracker</h1><p>Log your daily sustainable actions to estimate your CO₂ footprint savings.</p></div>
+      <div class="form-layout">
+        <form class="panel report-form" id="carbonForm">
+          <h2>Log Sustainability Actions</h2>
+          <div class="form-row">
+            <label>Segregated Waste Today?
+              <select id="cSegregate" required>
+                <option value="0">No</option>
+                <option value="1.5">Yes - Wet & Dry Waste (1.5 kg CO₂ saved)</option>
+              </select>
+            </label>
+            <label>Commute Mode
+              <select id="cCommute" required>
+                <option value="0">Car / Solo Vehicle</option>
+                <option value="2.1">Public Transit / Bus (2.1 kg CO₂ saved)</option>
+                <option value="3.5">Bicycle / Walked (3.5 kg CO₂ saved)</option>
+              </select>
+            </label>
+          </div>
+          <div class="form-row">
+            <label>Trees Planted / Adopted
+              <input type="number" id="cTrees" min="0" value="0" placeholder="Number of trees">
+            </label>
+            <label>Single-Use Plastics Avoided
+              <input type="number" id="cPlastics" min="0" value="0" placeholder="Number of items">
+            </label>
+          </div>
+          <button class="btn btn-primary btn-large full-width" type="submit">Calculate & Save Impact 🚀</button>
+        </form>
+        <aside class="side-note">
+          <div class="side-icon">📈</div>
+          <h3>Your Summary</h3>
+          <div class="tip-box">
+            <b>Total CO₂ Offset:</b>
+            <p style="font-size: 22px; font-weight:800; color:var(--green);" id="userCarbonDisplay">0.0 kg</p>
+            <p>Every small action contributes to lower urban heat and cleaner air in Vizag!</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- TREE COVER & HEAT MAP VIEW -->
+    <section class="view page-view" id="treemapView">
+      <div class="page-heading"><span class="eyebrow">Urban Ecology</span><h1>Tree-Planting & Urban Cover Map</h1><p>Explore city green canopy cover and locate high urban heat zones across Visakhapatnam.</p></div>
+      <div class="panel track-panel">
+        <div class="map-controls">
+          <button class="btn btn-primary filter-map active" data-map="all">All Zones</button>
+          <button class="btn btn-light filter-map" data-map="trees">Tree Plantings 🌳</button>
+          <button class="btn btn-light filter-map" data-map="heat">Urban Heat Hotspots 🌡️</button>
+        </div>
+        <div class="simulated-map" id="mapContainer">
+          <div class="map-overlay">Interactive Canopy Map (Vizag Coastal Region)</div>
+          <div class="map-pin pin-tree" style="top:30%; left:40%;" title="Kambalakonda Canopy Project (850 Trees)">🌳 Kambalakonda</div>
+          <div class="map-pin pin-tree" style="top:50%; left:65%;" title="Beach Road Greening (320 Trees)">🌳 Beach Road</div>
+          <div class="map-pin pin-heat" style="top:60%; left:30%;" title="Gajuwaka Industrial Heat Island (34°C)">🔥 Gajuwaka Hotspot</div>
+          <div class="map-pin pin-heat" style="top:40%; left:50%;" title="NAD Junction High Asphalt Zone (33°C)">🔥 NAD Junction</div>
+          <div class="map-pin pin-tree" style="top:25%; left:20%;" title="MVP Colony Urban Forest (400 Trees)">🌳 MVP Green Belt</div>
+        </div>
+        <div class="tip-box" style="margin-top:20px;">
+          <b>Urban Heat Island Note:</b> Areas with denser canopy cover (MVP Colony, Kambalakonda) record temperatures up to 3.5°C cooler than industrial heat zones like Gajuwaka.
+        </div>
+      </div>
+    </section>
+
+    <!-- REPORT WASTE VIEW -->
+    <section class="view page-view" id="reportView">
+      <div class="page-heading"><span class="eyebrow">Citizen services</span><h1>Report Waste Issue</h1><p>Share details so local teams can identify and resolve the issue.</p></div>
+      <div class="form-layout">
+        <form class="panel report-form" id="reportForm">
+          <h2>Complaint details</h2>
+          <div class="form-row">
+            <label>Issue category<select id="category" required><option value="">Select a category</option><option>Overflowing dustbin</option><option>Roadside garbage</option><option>Illegal dumping</option><option>Construction waste</option><option>Plastic waste</option><option>Other</option></select></label>
+            <label>Area / locality<input id="area" required maxlength="90" placeholder="e.g. MVP Colony, Gajuwaka"></label>
+          </div>
+          <label>Exact location / landmark<input id="location" required maxlength="160" placeholder="Street, landmark or nearby building"></label>
+          <label>Description<textarea id="description" required maxlength="500" rows="4" placeholder="Describe the garbage issue..."></textarea><small class="field-hint">Maximum 500 characters.</small></label>
+          <label class="upload-box" for="photo"><span class="upload-icon">📷</span><strong>Add a photograph (optional)</strong><small>JPG, PNG or WEBP · Up to 5 MB</small><input type="file" id="photo" accept="image/*"></label>
+          <div id="photoPreview" class="photo-preview hidden"><img id="previewImage" alt="Selected garbage photograph"><button type="button" id="removePhoto" class="text-button">Remove photo</button></div>
+          <div class="location-tools"><button type="button" class="btn btn-light" id="useLocation">◎ Use my current location</button><span id="geoStatus">Or enter location manually above.</span></div>
+          <input type="hidden" id="coordinates">
+          <button class="btn btn-primary btn-large full-width" type="submit">Submit complaint <span>→</span></button>
+        </form>
+        <aside class="side-note">
+          <div class="side-icon">💚</div><h3>Guidelines</h3>
+          <ul><li>Provide a clear location.</li><li>Upload a recent photo.</li><li>Submit one report per issue.</li></ul>
+        </aside>
+      </div>
+    </section>
+
+    <!-- TRACK VIEW -->
+    <section class="view page-view" id="trackView">
+      <div class="page-heading"><span class="eyebrow">Complaint updates</span><h1>Track Your Complaint</h1><p>Enter the complaint ID received after submitting a report.</p></div>
+      <div class="panel track-panel">
+        <form id="trackForm" class="track-search"><input id="trackId" placeholder="e.g. GV-ABC123" aria-label="Complaint ID" required><button class="btn btn-primary" type="submit">Track report</button></form>
+        <div id="trackResult" class="track-result"><div class="empty-state"><span>🔍</span><h3>Your report updates will appear here</h3><p>Enter a complaint ID above to view details.</p></div></div>
+      </div>
+    </section>
+
+    <!-- ABOUT VIEW -->
+    <section class="view page-view" id="aboutView">
+      <div class="page-heading"><span class="eyebrow">About the initiative</span><h1>Track 03 - Green Vizag Initiative</h1><p>Addressing waste segregation, urban heat, and tree cover under global climate action goals.</p></div>
+      <div class="about-grid"><article class="panel"><span class="about-emoji">🌍</span><h2>Local Target</h2><p>Waste segregation, urban heat mitigation, and expanding tree canopy across Visakhapatnam.</p></article><article class="panel"><span class="about-emoji">🤝</span><h2>Global Focus</h2><p>Aligned with UN Climate Action and Sustainable Development Goals (SDGs).</p></article><article class="panel"><span class="about-emoji">💡</span><h2>Built-in Ideas</h2><p>Integrates waste scanner, carbon footprint tracking, and urban heat/tree cover mapping.</p></article></div>
+    </section>
+
+    <!-- ADMIN VIEW -->
+    <section class="view page-view" id="adminView">
+      <div class="page-heading"><span class="eyebrow">Administration</span><h1>Admin Dashboard</h1><p>Review submitted complaints and update their status.</p></div>
+      <div class="admin-toolbar"><div class="admin-tabs"><button class="filter-btn active" data-filter="All">All reports</button><button class="filter-btn" data-filter="Pending">Pending</button><button class="filter-btn" data-filter="In Progress">In progress</button><button class="filter-btn" data-filter="Resolved">Resolved</button></div><button class="btn btn-light" id="adminLogout">Log out</button></div>
+      <div id="adminList" class="admin-list"></div>
+    </section>
+  </main>
+
+  <footer><div class="footer-brand">🌱 <b>Green Vizag</b></div><p>Designed for a cleaner, greener Visakhapatnam.</p><small>Track 03 Prototype • Climate Action & Sustainability</small></footer>
+
+  <div class="modal-backdrop hidden" id="authModal">
+    <div class="modal panel">
+      <button class="modal-close" id="modalClose" aria-label="Close">×</button>
+      <span class="eyebrow">Welcome to Green Vizag</span><h2 id="authTitle">Login</h2>
+      <form id="authForm">
+        <div id="nameField" class="hidden"><label>Full name<input id="authName" maxlength="70" placeholder="Your name"></label></div>
+        <label>Email address<input id="authEmail" type="email" required placeholder="you@example.com"></label>
+        <label>Password<input id="authPassword" type="password" required minlength="4" placeholder="At least 4 characters"></label>
+        <button class="btn btn-primary full-width" type="submit" id="authSubmit">Login</button>
+      </form>
+      <p class="switch-auth" id="authSwitch">New here? <button class="text-button" id="switchMode">Create an account</button></p>
+      <p class="demo-admin">Demo admin: admin@greenvizag.demo / GreenVizag123</p>
+    </div>
+  </div>
+
+  <!-- Customer Service Chatbot -->
+  <section class="chat-widget" aria-label="Green Vizag customer support">
+    <button class="chat-launcher" id="chatLauncher" type="button" aria-label="Open Green Vizag customer support chat" aria-expanded="false">
+      <span class="chat-launcher-icon">💬</span><span class="chat-launcher-label">Need help?</span>
+    </button>
+    <div class="chat-panel hidden" id="chatPanel" role="dialog" aria-label="Green Vizag customer service" aria-modal="false">
+      <header class="chat-header">
+        <div class="chat-avatar">🌱</div>
+        <div class="chat-header-copy"><strong>Green Vizag Support</strong><small><span class="chat-online-dot"></span> Online · Automated assistant</small></div>
+        <button class="chat-close" id="chatClose" type="button" aria-label="Close chat">×</button>
+      </header>
+      <div class="chat-messages" id="chatMessages" aria-live="polite">
+        <div class="chat-message bot-message"><span class="chat-message-avatar">🌱</span><div class="chat-bubble">Hi! Welcome to Green Vizag. I'm your customer service assistant. I can help with waste segregation, complaints, complaint tracking, the carbon tracker, and the tree map. What would you like to know?</div></div>
+      </div>
+      <div class="chat-quick-actions" aria-label="Suggested questions">
+        <button type="button" data-chat-question="How do I report a waste issue?">Report waste</button>
+        <button type="button" data-chat-question="How can I track my complaint?">Track complaint</button>
+        <button type="button" data-chat-question="How should I segregate waste?">Waste guide</button>
+      </div>
+      <form class="chat-compose" id="chatForm">
+        <label class="sr-only" for="chatInput">Type your message</label>
+        <input id="chatInput" type="text" maxlength="500" placeholder="Type your question..." autocomplete="off" required>
+        <button type="submit" aria-label="Send message">➤</button>
+      </form>
+      <p class="chat-disclaimer">Automated help · Do not share passwords or sensitive information.</p>
+    </div>
+  </section>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
